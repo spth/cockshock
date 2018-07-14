@@ -1,0 +1,123 @@
+%  cockshock.tex - documentation source file
+
+%  Written By - Philipp Klaus Krause
+
+%  This program is free software; you can redistribute it and/or modify it
+%  under the terms of the GNU General Public License as published by the
+%  Free Software Foundation; either version 2, or (at your option) any
+%  later version.
+
+%  This program is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+
+%  You should have received a copy of the GNU General Public License
+%  along with this program; if not, write to the Free Software
+%  Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+%  In other words, you are welcome to use, share and improve this program.
+%  You are forbidden to forbid anyone else to use, share and improve
+%  what you give them.   Help stamp out software-hoarding!
+
+\documentclass[a4paper]{article}
+\usepackage{xltxtra}
+\usepackage[pdftitle={Cock Shock},pdfauthor={Philipp Klaus Krause}]{hyperref}
+
+\begin{document}
+\title{Cock Shock}
+\author{Philipp Klaus Krause}
+
+\maketitle
+
+\section{Introduction}
+
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices on the market, and the Cock Shock currently seems to be the most easily available one.
+
+However, it has various shortcomings, both in documentation and the device itself.
+
+Reverse engineering will result in better documentation, such as this document, and hopefully in hacks to address the device's shortcomings.
+
+\section{What is the Cock Shock?}
+
+TODO
+
+\section{What is the Problem?}
+
+The Cock Shock is badly documented by the manufacturer, and has some shortcomings in functionality.
+
+As can be seen from reviews (e.g. on www.amazon.com and on some blogs), some users didn't get instructions or maybe didn't notice the small folded piece of paper that contains the instructions, resulting in them being unable to get the device to work. Other users have trouble due to undocumented functionality, such as the 3-minute auto-shutdown timeout.
+
+Many also miss some functionality, such as setting the shock level:
+
+\begin{quotation}
+I would have liked there to be two, or three, different levels of intensity for the jolts. Just to perhaps tease, or train, my slaves up through several levels of shock, rather than have them cry their safe word so quickly. So, consequently, all of my “cock-shocker” sessions have been quite short so far! […] But, I haven’t yet had any of the subs I’ve used it on, be able to take more than two or three jolts before they’ve cried their “safe word”\cite{Ellison2016}
+\end{quotation}
+
+\begin{quotation}
+I’ve used a fair few electro sex toys and can use cock loops at maximum output on the powerboxes I have – this feels nothing like them at all. Where they can feel like a nice powerful vibration this feels more like how I imagine a taser feels, it is a powerful jolt that even my masochistic slave was fearful of – it hurts that much.\cite{Decerous2016}
+\end{quotation}
+
+Being able to disable the 3-minute auto-shutdown timeout would also be useful.
+
+\section{Using the Cock Shock}
+
+The manufacturer's instructions are rather short and incomplete:
+
+\begin{quotation}
+Instructions:
+
+To use the Cock Shock, first insert a 9v battery (included) into the remote control. Second, unscrew the electro contact points on the shock unit and remove the inner plate to reveal the battery compartment. Insert two AAA batteries (not included).
+
+A red and green light should come on in the shock unit, and the red light should be flashing. At this time hit either the shock or vibrate button to pair the remote to the shock unit. Reinstall the inner plate, and screw the electro contact points back on.
+
+Now strap the shock unit to his junk in whatever way you see fit, making sure that the contact points are pressing firmly into his skin. Now he either behaves, or you discipline him.\cite{MasterSeriesCockShockInstructions}
+\end{quotation}
+
+The remote has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, Volume). The Shock and Vibrate buttons send commands to the shock unit via RF. The Light button shines a blusish light from hte front of the remote. The Sound button sounds a bird noise from the remote, the volume depends on teh setting of the volume switch. The On/Off button is mostly useful to prevent accidential triggering of any functions. The remote consumes virtually no power even when switched on as long as no buttons are pressed (see Figure \ref{remotepower}).
+
+\begin{figure*}[h]
+	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+	\hline
+	Bat.\ volt. & Off & Idle & Shock & Light & Vibrate & Sound- & Sound & Sound+ \\
+	\hline
+	\hline
+	8.4 V & < .1 µA & < .1 µA & 30 mA & 36 mA & 35 mA & 10 mA & 30 mA & 110 mA\\
+	\hline
+	9.0 V & < .1 µA & < .1 µA & 35 mA & 40 mA & 37 mA & 10 mA & 30 mA & 80 mA\\
+	\hline
+	\end{tabular}
+	\caption{\label{remotepower}Measured battery current draw of remote at the nomial voltages of NiMH and Alkaline batteries}
+\end{figure*}
+
+The shock unit has two electrodes, for making contact with skin. While they have a good shape for their purpose, using a conductive electrode gel can further reduce resistance between the electrodes and the body. When the shock unit receives no commands for about 3 minutes, it goes into shutdown, reducing power consumption by about 20\% (see Figure~\ref{shockunitpower}). In shutdown mode, the shock unit will not receive any commands from the remote. The shock unit has a tilt sensor and can be brought out of shutdown mode by moving it.
+
+\begin{figure*}[h]
+	\begin{tabular}{|l|r|r|r|r|}
+	\hline
+	Bat.\ volt. & Idle & Shutdown & Shock & Vibrate \\
+	\hline
+	\hline
+	2.4 V & 54 mA & 41 mA & 156 mA & 140 mA\\
+	\hline
+	3.0 V & 52 mA & 41 mA & 170 mA & 160 mA\\
+	\hline
+	3.3 V &  &  &  & \\
+	\hline
+	\end{tabular}
+	\caption{\label{shockunitpower}Measured battery current draw of shock unit at the nomial voltages of NiMH, Alkaline and NiZn batteries}
+\end{figure*}
+
+\section{The Remote}
+
+TODO
+
+\section{The Shock Unit}
+
+TODO
+
+\bibliographystyle{plain}
+\bibliography{cockshock}
+
+\end{document}
+
