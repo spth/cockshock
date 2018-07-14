@@ -32,7 +32,7 @@
 
 \section{Introduction}
 
-The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices on the market, and the Cock Shock currently seems to be the most easily available one.
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices currently commercially available, and the Cock Shock seems to be the most easily available and affordable one.
 
 However, it has various shortcomings, both in documentation and the device itself.
 
@@ -40,7 +40,7 @@ Reverse engineering will result in better documentation, such as this document, 
 
 \section{What is the Cock Shock?}
 
-TODO
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device by Master Series. It consists of a remote control and a shock unit. The shock unit is meant to be attached to male genitals and can provide electric shocks and vibration. The remote control sends commands to the shock unit via 433 Mhz RF. There is some safety designed into the protocol to avoid accidential activation of the shock unit by other nearby 433 Mhz devices. There is no security, so a deliberate activation of the shock unit by an attacker (e.g. a replay attack using a software-defined radio) would be easy.
 
 \section{What is the Problem?}
 
@@ -74,7 +74,7 @@ A red and green light should come on in the shock unit, and the red light should
 Now strap the shock unit to his junk in whatever way you see fit, making sure that the contact points are pressing firmly into his skin. Now he either behaves, or you discipline him.\cite{MasterSeriesCockShockInstructions}
 \end{quotation}
 
-The remote has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, Volume). The Shock and Vibrate buttons send commands to the shock unit via RF. The Light button shines a blusish light from hte front of the remote. The Sound button sounds a bird noise from the remote, the volume depends on teh setting of the volume switch. The On/Off button is mostly useful to prevent accidential triggering of any functions. The remote consumes virtually no power even when switched on as long as no buttons are pressed (see Figure \ref{remotepower}).
+The remote control has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, Volume). The Shock and Vibrate buttons send commands to the shock unit via RF. The Light button shines a blueish light from hte front of the remote control. The Sound button sounds a bird noise from the back of the remote control, the volume depends on teh setting of the volume switch. The On/Off button is mostly useful to prevent accidential triggering of any functions. The remote control consumes virtually no power even when switched on as long as no buttons are pressed (see Figure \ref{remotepower}).
 
 \begin{figure*}[h]
 	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
@@ -87,10 +87,10 @@ The remote has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, 
 	9.0 V & < .1 µA & < .1 µA & 35 mA & 40 mA & 37 mA & 10 mA & 30 mA & 80 mA\\
 	\hline
 	\end{tabular}
-	\caption{\label{remotepower}Measured battery current draw of remote at the nomial voltages of NiMH and Alkaline batteries}
+	\caption{\label{remotepower}Measured battery current draw of remote control at the nomial voltages of NiMH and Alkaline batteries}
 \end{figure*}
 
-The shock unit has two electrodes, for making contact with skin. While they have a good shape for their purpose, using a conductive electrode gel can further reduce resistance between the electrodes and the body. When the shock unit receives no commands for about 3 minutes, it goes into shutdown, reducing power consumption by about 20\% (see Figure~\ref{shockunitpower}). In shutdown mode, the shock unit will not receive any commands from the remote. The shock unit has a tilt sensor and can be brought out of shutdown mode by moving it.
+The shock unit has two electrodes, for making contact with skin. While they have a good shape for their purpose, using a conductive electrode gel can further reduce resistance between the electrodes and the body. When the shock unit receives no commands for about 3 minutes, it goes into shutdown, reducing power consumption by about 20\% (see Figure~\ref{shockunitpower}). In shutdown mode, the shock unit will not receive any commands from the remote control. The shock unit has a tilt sensor and can be brought out of shutdown mode by moving it. When the unit is not in use, the battery should be taken out, as the high current draw will quickly empty the battery even when in shutdown.
 
 \begin{figure*}[h]
 	\begin{tabular}{|l|r|r|r|r|}
@@ -108,7 +108,7 @@ The shock unit has two electrodes, for making contact with skin. While they have
 	\caption{\label{shockunitpower}Measured battery current draw of shock unit at the nomial voltages of NiMH, Alkaline and NiZn batteries}
 \end{figure*}
 
-\section{The Remote}
+\section{The Remote Control}
 
 TODO
 
