@@ -22,6 +22,7 @@
 
 \documentclass[a4paper]{article}
 \usepackage{xltxtra}
+\usepackage{siunitx}
 \usepackage[pdftitle={Cock Shock},pdfauthor={Philipp Klaus Krause}]{hyperref}
 
 \begin{document}
@@ -40,7 +41,7 @@ Reverse engineering will result in better documentation, such as this document, 
 
 \section{What is the Cock Shock?}
 
-The Cock Shock is a remote-controlled electric cock-and-ball-torture device by Master Series. It consists of a remote control and a shock unit. The shock unit is meant to be attached to male genitals and can provide electric shocks and vibration. The remote control sends commands to the shock unit via 433 Mhz RF. There is some safety designed into the protocol to avoid accidential activation of the shock unit by other nearby 433 Mhz devices. There is no security, so a deliberate activation of the shock unit by an attacker (e.g. a replay attack using a software-defined radio) would be easy.
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device by Master Series. It consists of a remote control and a shock unit. The shock unit is meant to be attached to male genitals and can provide electric shocks and vibration. The remote control sends commands to the shock unit via 434 Mhz RF. There is some safety designed into the protocol to avoid accidential activation of the shock unit by other nearby 434 Mhz devices. There is no security, so a deliberate activation of the shock unit by an attacker (e.g. a replay attack using a software-defined radio) would be easy.
 
 \section{What is the Problem?}
 
@@ -119,15 +120,57 @@ The remote control contains Princeton Technology PT2240B Encoder, which encodes 
 
 TODO: PCB pictures.
 
-TODO: Schematic.
+TODO: Schematics.
 
 \section{The Shock Unit}
 
-TODO: Discussion.
+The shock unit electronics consist of three parts: A RF module, the main part and the high-voltage module. The RF module consists of a separate pcb interfaced via 3 pins to the main module. The high-voltage part interfaces via two pcb traces to the main module. Both the RF module and the main module contain an IC. On both ICs, the markings have been sanded off. the main module also features a vibrator and a tilt switch.
+
+The RF module is almost identical to the reference circuit in the datasheet of the HOPERF RF83C RF receiver IC. Thus, the IC is most likely a RF83C, though other RF ICs with a compatible pinout, such as the Micrel MICRF002/RF022 cannot be ruled out.
+
+\begin{figure*}[h]
+	\centerline{\begin{tabular}{|l|l|}
+	\hline
+	Pin & Use \\
+	\hline
+	\hline
+	1 & Not connected\\
+	\hline
+	2 & Not connected\\
+	\hline
+	3 & Not connected\\
+	\hline
+	4 & 3.3 V\\
+	\hline
+	5 & Output to vibrator, connected to transistor via 2.2 k\si{\ohm} resistor\\
+	\hline
+	6 & Output to vibrator, connected to transistor via 2.2 k\si{\ohm} resistor\\
+	\hline
+	7 & Data input from RF module\\
+	\hline
+	8 & Output to high-voltage module, connected to transistor via 150 \si{\ohm} resistor\\
+	\hline
+	9 & Output to vibrator, connected to transistor via 2.2 k\si{\ohm} resistor\\
+	\hline
+	10 & Input from tilt sensor\\
+	\hline
+	11 & GND\\
+	\hline
+	12 & Output, connected to LED via 1 k\si{\ohm} resistor\\
+	\hline
+	13 & Input, connected to battery voltage via 0 \si{\ohm} resistor\\
+	\hline
+	14 & Not connected\\
+	\hline
+	\end{tabular}}
+	\caption{\label{mainmoduleic}Pinout on the unmarked IC on the main module}
+\end{figure*}
+
+The main module contains an SOIC-14 IC which is probably a µC. The unusual pinout could help identify it (see Figure~\ref{mainmoduleic}). So far, the EM78P153A has been identified as a possibility.
 
 TODO: PCB pictures.
 
-TODO: Schematic.
+TODO: Schematics.
 
 \bibliographystyle{plain}
 \bibliography{cockshock}
