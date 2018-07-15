@@ -172,6 +172,16 @@ TODO: PCB pictures.
 
 TODO: Schematics.
 
+TODO: Measure shock voltage and waveform. Under no load, the voltage is in excess of 2000V (upper limit of measurement device used so far).
+
+\section{Hacks}
+
+So far, these are just ideas.
+
+A simple modification would be replacing the tilt switch in the shock unit by a slow (0.01 Hz to 1 Hz) Oscillator to disable the 3-minute auto-shutdown timeout.
+
+If the pulse output for shocks from the µC can be used to set the shock intensity (e.g. by charging some capacitors just partially), a more advanced modification would be to replace the µC in the shock unit by a different one programmed to use the lower bits of the received data for the shock intensity (and also get rid of the 3-minute auto-shutdown timeout at teh same time). This would also requie a modification of the remote control, e.g. connecting the volume switch to the encoder inputs for the lower data bits.
+
 \bibliographystyle{plain}
 \bibliography{cockshock}
 
