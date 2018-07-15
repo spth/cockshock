@@ -1,5 +1,5 @@
 XELATEXARGS = -file-line-error -halt-on-error
-IMAGES =
+IMAGES = remotecontrol.jpeg
 
 .PHONY: clean all
 

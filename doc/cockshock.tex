@@ -74,10 +74,15 @@ A red and green light should come on in the shock unit, and the red light should
 Now strap the shock unit to his junk in whatever way you see fit, making sure that the contact points are pressing firmly into his skin. Now he either behaves, or you discipline him.\cite{MasterSeriesCockShockInstructions}
 \end{quotation}
 
-The remote control has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, Volume). The Shock and Vibrate buttons send commands to the shock unit via RF. The Light button shines a blueish light from hte front of the remote control. The Sound button sounds a bird noise from the back of the remote control, the volume depends on teh setting of the volume switch. The On/Off button is mostly useful to prevent accidential triggering of any functions. The remote control consumes virtually no power even when switched on as long as no buttons are pressed (see Figure \ref{remotepower}).
+\begin{figure}
+	\centerline{\includegraphics[scale=0.05]{remotecontrol.jpeg}}
+	\caption{\label{remotecontrol}Remote Control}
+\end{figure}
+
+The remote control has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (On/Off, Volume). The Shock and Vibrate buttons send commands to the shock unit via RF. The Light button shines a blueish light from hte front of the remote control. The Sound button sounds a bird noise from the back of the remote control, the volume depends on the setting of the volume switch. The On/Off button is mostly useful to prevent accidential triggering of any functions. The remote control consumes virtually no power even when switched on as long as no buttons are pressed (see Figure \ref{remotepower}). There also are three LEDs, the top one for the light, the right one to indicate that the sound should be active (at low battery voltage, the sound can be inaudible, but the LED wills till light up), the left one to indicate that a command is being sent to the shock unit. The antenna can be extended to increase range.
 
 \begin{figure*}[h]
-	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+	\centerline{\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 	\hline
 	Bat.\ volt. & Off & Idle & Shock & Light & Vibrate & Sound- & Sound & Sound+ \\
 	\hline
@@ -86,14 +91,14 @@ The remote control has 4 buttons (Shock, Light, Vibrate, Sound) and 2 switches (
 	\hline
 	9.0 V & < .1 µA & < .1 µA & 35 mA & 40 mA & 37 mA & 10 mA & 30 mA & 80 mA\\
 	\hline
-	\end{tabular}
+	\end{tabular}}
 	\caption{\label{remotepower}Measured battery current draw of remote control at the nomial voltages of NiMH and Alkaline batteries}
 \end{figure*}
 
 The shock unit has two electrodes, for making contact with skin. While they have a good shape for their purpose, using a conductive electrode gel can further reduce resistance between the electrodes and the body. When the shock unit receives no commands for about 3 minutes, it goes into shutdown, reducing power consumption by about 20\% (see Figure~\ref{shockunitpower}). In shutdown mode, the shock unit will not receive any commands from the remote control. The shock unit has a tilt sensor and can be brought out of shutdown mode by moving it. When the unit is not in use, the battery should be taken out, as the high current draw will quickly empty the battery even when in shutdown.
 
 \begin{figure*}[h]
-	\begin{tabular}{|l|r|r|r|r|}
+	\centerline{\begin{tabular}{|l|r|r|r|r|}
 	\hline
 	Bat.\ volt. & Idle & Shutdown & Shock & Vibrate \\
 	\hline
@@ -104,17 +109,25 @@ The shock unit has two electrodes, for making contact with skin. While they have
 	\hline
 	3.3 V &  &  &  & \\
 	\hline
-	\end{tabular}
+	\end{tabular}}
 	\caption{\label{shockunitpower}Measured battery current draw of shock unit at the nomial voltages of NiMH, Alkaline and NiZn batteries}
 \end{figure*}
 
 \section{The Remote Control}
 
-TODO
+The remote control contains Princeton Technology PT2240B Encoder, which encodes 25-bit code words in a form suitable for RF modulation. Each code word consists of a 20-bit little endian address, followed by a 4-bit big-endian data nibble followed by a sync bit. The highest data bit indicates a shock command, the second-highest indicates a vibrate command, the lower 2 data bits are always 0 (the respective pins on the PT2240B have pull-down resistors).
+
+TODO: PCB pictures.
+
+TODO: Schematic.
 
 \section{The Shock Unit}
 
-TODO
+TODO: Discussion.
+
+TODO: PCB pictures.
+
+TODO: Schematic.
 
 \bibliographystyle{plain}
 \bibliography{cockshock}
