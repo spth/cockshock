@@ -33,7 +33,7 @@
 
 \section{Introduction}
 
-The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices currently commercially available, and the Cock Shock seems to be the most easily available and affordable one.
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices explicitly markedted for this purpose, and the Cock Shock seems to be the most easily available and affordable one.
 
 However, it has various shortcomings, both in documentation and the device itself.
 
@@ -42,6 +42,8 @@ Reverse engineering will result in better documentation, such as this document, 
 \section{What is the Cock Shock?}
 
 The Cock Shock is a remote-controlled electric cock-and-ball-torture device by Master Series. It consists of a remote control and a shock unit. The shock unit is meant to be attached to male genitals and can provide electric shocks and vibration. The remote control sends commands to the shock unit via 434 MHz RF. There is some safety designed into the protocol to avoid accidental activation of the shock unit by other nearby 434 MHz devices. There is no security, so a deliberate activation of the shock unit by an attacker (e.g. a replay attack using a software-defined radio) would be easy.
+
+% Essentially, the Cock Shock is just a rebranded, repackaged dog shock collar with the collar band replaced by a shorter strip that better fits male genitals. TODO: Check this. There are devices that look just like that on ebay, but we'd want to know if the shock intensity is the same before statinge this here.
 
 \section{What is the Problem?}
 
@@ -124,9 +126,9 @@ TODO: Schematics.
 
 \section{The Shock Unit}
 
-The shock unit electronics consist of three parts: A RF module, the main part and the high-voltage module. The RF module consists of a separate PCB interfaced via 3 pins to the main module. The high-voltage part interfaces via two PCB traces to the main module. Both the RF module and the main module contain an IC. On both ICs, the markings have been sanded off. the main module also features a vibrator and a tilt switch.
+The shock unit electronics consist of three parts: A RF module, the main part and the high-voltage module. The RF module consists of a separate PCB interfaced via 3 pins to the main module. The high-voltage part interfaces via two PCB traces to the main module. Both the RF module and the main module contain an IC. On both ICs, the markings have been sanded off. The main module also features a vibrator and a tilt switch.
 
-The RF module is almost identical to the reference circuit in the datasheet of the HOPERF RF83C RF receiver IC. Thus, the IC is most likely a RF83C, though other RF ICs with a compatible pinout, such as the Micrel MICRF002/RF022 cannot be ruled out.
+The RF module is almost identical to the reference circuit in the datasheet of the HOPERF RF83C RF receiver IC. Thus, the IC is most likely a RF83C, though other RF ICs with a compatible pinout, such as the Micrel MICRF002/RF022 cannot be ruled out. When receiving data, lowest two data bits are apparently ignored.
 
 \begin{figure*}[h]
 	\centerline{\begin{tabular}{|l|l|}
@@ -184,7 +186,11 @@ The oscillator could be built from just three small components: A 74LVC1G14 inve
 
 So far, this is just an idea.
 
-If the pulse output for shocks from the µC can be used to set the shock intensity (e.g. by charging some capacitors just partially), a more advanced modification would be to replace the µC in the shock unit by a different one programmed to use the lower bits of the received data for the shock intensity (and also get rid of the 3-minute auto-shutdown timeout at the same time). This would also require a modification of the remote control, e.g. connecting the volume switch to the encoder inputs for the lower data bits.
+If the pulse output for shocks from the µC can be used to set the shock intensity (e.g. by charging some capacitors just partially), a more advanced modification would be to replace the µC in the shock unit by a different one programmed to use the lower bits of the received data for the shock intensity (and also get rid of the 3-minute auto-shutdown timeout at the same time).
+
+The volume switch on the remote control is repurposed to adjust the shock intensity, while the sound volume is fixed. To this end, the resistors R1 and R2 are removed from the PCB. The trace from the sound module is cut near the switch. The speaker wire connecting to the switch is removed and resoldered to the now-empty pad on R1 or R2 (this fixes the sound to high volume - if a lower volume is desired, a 47 \si{\ohm} resistor can be placed in series with the wire for the middle volume, a 330 \si{\ohm} resistor for low volume). The common point on the switch is connected to battery voltage, and the contacts for low and medium volume are connected to the data pins D0 and D1 on the encoder. Figure~\ref{shockintensityhackremote} shows the modifications.
+
+Modified remote controls can still be used with unmodified shock units and vice versa (of course then the shock volume will not be adjustable).
 
 \bibliographystyle{plain}
 \bibliography{cockshock}
