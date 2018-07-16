@@ -170,6 +170,13 @@ The RF module is almost identical to the reference circuit in the datasheet of t
 
 The main module contains an SOIC-14 IC which is probably a µC. The unusual pinout could help identify it (see Figure~\ref{mainmoduleic}). So far, the EM78P153A has been identified as a possibility.
 
+\begin{figure}
+	\centerline{\includegraphics[scale=0.5]{shockcommand.png}}
+	\caption{\label{shockcommand}Top: Shock command as received from RF module at pin 7, bottom: pin 8 (total length of sequence: 50 ms, measured via LWLA1034 logic analyzer at shock unit)}
+\end{figure}
+
+In the protocol, 1 bits are encoded as a 1.2 ms high pulse followed by a 0.4 ms low, 0 bits are encoded by a 0.4 ms high pulse followed by a 1.2 ms low (see Figure~\ref{shockcommand}).
+
 TODO: PCB pictures.
 
 TODO: Schematics.
