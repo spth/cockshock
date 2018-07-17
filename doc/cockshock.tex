@@ -118,11 +118,17 @@ The shock unit has two electrodes, for making contact with skin. While they have
 
 \section{The Remote Control}
 
-The remote control contains Princeton Technology PT2240B Encoder, which encodes 25-bit code words in a form suitable for RF modulation. Each code word consists of a 20-bit little endian address, followed by a 4-bit big-endian data nibble followed by a sync bit. The highest data bit indicates a shock command, the second-highest indicates a vibrate command, the lower 2 data bits are always 0 (the respective pins on the PT2240B have pull-down resistors).
+The remote control contains Princeton Technology PT2240B Encoder, which encodes 25-bit code words in a form suitable for RF modulation. Each code word consists of a 20-bit little endian address, followed by a 4-bit big-endian data nibble followed by a sync bit. The highest data bit indicates a shock command, the second-highest indicates a vibrate command, the lower 2 data bits are always 0 (the respective pins on the PT2240B have pull-down resistors). See Figure~\ref{remotepcb} for the disassembled remote, Figure~\ref{remote-main} for the schematic.
 
-TODO: PCB pictures.
+\begin{figure}
+	\centerline{\includegraphics[scale=0.1]{remote-top.jpeg}\includegraphics[scale=0.1]{remote-bottom.jpeg}}
+	\caption{\label{remotepcb}Disassembled remote control}
+\end{figure}
 
-TODO: Schematics.
+\begin{figure}
+	\centerline{\includegraphics[scale=0.5]{remote-main.jpeg}}
+	\caption{\label{remote-main}Scheamtic of remote (excluding sound module, RF module, light circuitry}
+\end{figure}
 
 \section{The Shock Unit}
 
