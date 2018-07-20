@@ -38,7 +38,12 @@
 #define PC_DDR (*((volatile uint8_t *)0x500c))
 #define PC_CR1 (*((volatile uint8_t *)0x500d))
 
+#define TIM1_CR1 (*((volatile uint8_t *)0x5250))
 #define TIM1_IER (*((volatile uint8_t *)0x5254))
+#define TIM1_PSCRH (*((volatile uint8_t *)0x5260))
+#define TIM1_PSCRL (*((volatile uint8_t *)0x5261))
+#define TIM1_ARRH (*((volatile uint8_t *)0x5261))
+#define TIM1_ARRL (*((volatile uint8_t *)0x5261))
 
 volatile uint_fast32_t rfword;
 volatile bool rfword_valid;
@@ -115,9 +120,12 @@ void init(void)
 	PC_CR1 = (1 << 3) | (1 << 4) | (1 << 5);
 
 	// Initialize timer for RF interrupt at 6.66 kHz
-
-	// TODO
+	TIM1_PSCRH = 0;
+	TIM1_PSCRL = 15;
+	TIM1_ARRH = 0;
+	TIM1_ARRL = 150;
 	TIM1_IER = 0x01;
+	TIM1_CR1 = 0x01;
 }
 
 void main(void)
