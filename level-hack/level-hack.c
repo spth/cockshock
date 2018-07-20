@@ -1,6 +1,6 @@
 /*-------------------------------------------------------------------------
-   level-hack.c - source code for STM8S001 to control shock level in the Cock Shock 
-                  Hack for adjustable shock intensity.
+   level-hack.c - source code for STM8S001 to control shock level in the
+                  Cock Shock Hack for adjustable shock intensity.
 
                   Philipp Klaus Krause (2018)
 
@@ -38,6 +38,8 @@
 #define PC_DDR (*((volatile uint8_t *)0x500c))
 #define PC_CR1 (*((volatile uint8_t *)0x500d))
 
+#define TIM1_IER (*((volatile uint8_t *)0x5254))
+
 volatile uint_fast32_t rfword;
 volatile bool rfword_valid;
 
@@ -65,7 +67,7 @@ void handle_rfbit(bool bit, bool bit_valid)
 	}
 }
 
-void rf(void) __interrupt
+void rf(void) __interrupt(11) // TIM1 update
 {
 	const bool rfstate = PA_IDR & (1 << 1); // PA bit 1 is the input from the RF module
 
@@ -78,9 +80,9 @@ void rf(void) __interrupt
 		lowcount++;
 	else // Start of next bit
 	{
-		if (highcount >= 2 && highcount <= 3 && lowcount >= 7 && lowcount <= 9) // Valid 0 bit
+		if(highcount >= 2 && highcount <= 3 && lowcount >= 7 && lowcount <= 9) // Valid 0 bit
 			handle_rfbit(0, true);
-		else if (highcount >= 7 && highcount <= 9 && lowcount >= 2 && lowcount <= 3) // Valid 1 bit
+		else if(highcount >= 7 && highcount <= 9 && lowcount >= 2 && lowcount <= 3) // Valid 1 bit
 			handle_rfbit(1, true);
 		else // Invalid bit
 			handle_rfbit(0, false);
@@ -90,6 +92,7 @@ void rf(void) __interrupt
 	}
 }
 
+// We use mutiple die pins that are bonded together to a single package pin to be able to handle higher currents.
 void shock(uint_fast8_t level)
 {
 	// The lower bit of the shock level is connected to PA3 and PA5.
@@ -103,6 +106,7 @@ void shock(uint_fast8_t level)
 void init(void)
 {
 	// Initalize I/O pins for output.
+	// WARNING: SETTINGS BIT 6 OF PORT C OR BIT 1, 3 OR 5 of PORT D TO OUTPUT CAN BRICK STM8S001J3!
 	PA_DDR = (1 << 3);
 	PA_CR1 = (1 << 3);
 	PB_DDR = (1 << 5);
@@ -113,6 +117,7 @@ void init(void)
 	// Initialize timer for RF interrupt at 6.66 kHz
 
 	// TODO
+	TIM1_IER = 0x01;
 }
 
 void main(void)
@@ -122,15 +127,15 @@ void main(void)
 
 	init();
 
-	// Initialize address form first valid RF word received to pair to remote control.
+	// Initialize address from first valid RF word received to pair to remote control.
 	while(!rfword_valid);
 	address = rfword >> 4;
 
 	for(;;)
 	{
-		if (rfword_valid)
+		if(rfword_valid)
 		{
-			if ((rfword >> 4) == address)
+			if((rfword >> 4) == address)
 				shock_level = rfword & 3;
 			rfword_valid = false;
 			if(!shock_level)
