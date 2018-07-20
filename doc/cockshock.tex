@@ -200,13 +200,23 @@ TODO: Measure shock voltage and waveform. Under no load, the voltage is in exces
 
 A simple modification would be replacing the tilt switch in the shock unit by a slow (0.01 Hz to 10 Hz) Oscillator to disable the 3-minute auto-shutdown timeout.
 
-The oscillator could be built from just three small components: A 74LVC1G14 inverting Schmitt-trigger buffer, a 1 µF capacitor and a 100 \si{\ohm} resistor.
+\begin{figure}
+	\centerline{\includegraphics[scale=0.5]{auto-shutdown-timeout-hack.jpeg}}
+	\caption{\label{auto-shutdown-timeout-hack}Oscillator for hack to disable auto-shutdown timeout}
+\end{figure}
+
+The oscillator could be built from just three small components: A 74LVC1G14 inverting Schmitt-trigger buffer, a 1 µF capacitor and a 100 \si{\ohm} resistor (see Figure~\ref{auto-shutdown-timeout-hack}).
 
 \section{Hack: Adjustable shock intensity}
 
 So far, this is just an idea.
 
-One should be able to adjust the shock intensity by setting the supply voltage for the high-voltage module. In the unmodified device, this is the minimum of the battery voltage and 3.3V. One should be able to adjust the shock intensity by providing an analog signal to R3. This would require a different µC (programmed to use the lower two data bits, and set the output to R3 accordingly, be it by integrated DAC, or some other form of DAC), either in addition to or replacing the exisitng µC. Replacing the µC would also get rid of the 3-minute auto-shutdown timeout at the same time.
+\begin{figure}
+	\centerline{\includegraphics[scale=0.5]{level-hack-shock-unit.jpeg}}
+	\caption{\label{level-hack-shock-unit}Additional µC in shock unit}
+\end{figure}
+
+One should be able to adjust the shock intensity by setting the supply voltage for the high-voltage module. In the unmodified device, this is the minimum of the battery voltage and 3.3V. One should be able to adjust the shock intensity by providing an analog signal to R3. This would require a different µC (programmed to use the lower two data bits, and set the output to R3 accordingly, be it by integrated DAC, or some other form of DAC), either in addition to (see Figure~\ref{level-hack-shock-unit}) or replacing the existing µC. Replacing the µC would also get rid of the 3-minute auto-shutdown timeout at the same time.
 
 The volume switch on the remote control is repurposed to adjust the shock intensity, while the sound volume is fixed. To this end, the resistors R1 and R2 are removed from the PCB. The trace from the sound module is cut near the switch. The speaker wire connecting to the switch is removed and resoldered to the now-empty pad on R1 or R2 (this fixes the sound to high volume - if a lower volume is desired, a 47 \si{\ohm} resistor can be placed in series with the wire for the middle volume, a 330 \si{\ohm} resistor for low volume). The common point on the switch is connected to battery voltage, and the contacts for low and medium volume are connected to the data pins D0 and D1 on the encoder. Figure~\ref{shockintensityhackremote} shows the modifications.
 

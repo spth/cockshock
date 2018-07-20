@@ -1,5 +1,5 @@
 XELATEXARGS = -file-line-error -halt-on-error
-IMAGES = remotecontrol.jpeg remote-top.jpeg remote-bottom.jpeg remote-main.jpeg shockcommand.png shock.png
+IMAGES = remotecontrol.jpeg remote-top.jpeg remote-bottom.jpeg remote-main.jpeg shockcommand.png shock.png auto-shutdown-timeout-hack.jpeg level-hack-shock-unit.jpeg
 
 .PHONY: clean all
 
