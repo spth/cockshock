@@ -29,7 +29,7 @@
 #define PA_ODR (*((volatile uint8_t *)0x5000))
 #define PA_IDR (*((volatile uint8_t *)0x5001))
 #define PA_DDR (*((volatile uint8_t *)0x5002))
-#define PA_CR1 (*((volatile uint8_t *)0x5002))
+#define PA_CR1 (*((volatile uint8_t *)0x5003))
 #define PB_ODR (*((volatile uint8_t *)0x5005))
 #define PB_IDR (*((volatile uint8_t *)0x5006))
 #define PB_DDR (*((volatile uint8_t *)0x5007))
