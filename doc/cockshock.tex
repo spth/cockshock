@@ -33,7 +33,7 @@
 
 \section{Introduction}
 
-The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices explicitly markedted for this purpose, and the Cock Shock seems to be the most easily available and affordable one.
+The Cock Shock is a remote-controlled electric cock-and-ball-torture device. There is only a small number of such devices explicitly marketed for this purpose, and the Cock Shock seems to be the most easily available and affordable one.
 
 However, it has various shortcomings, both in documentation and the device itself.
 
@@ -118,7 +118,7 @@ The shock unit has two electrodes, for making contact with skin. While they have
 
 \section{The Remote Control}
 
-The remote control contains Princeton Technology PT2240B Encoder, which encodes 25-bit code words in a form suitable for RF modulation. Each code word consists of a 20-bit little endian address, followed by a 4-bit big-endian data nibble followed by a sync bit. The highest data bit indicates a shock command, the second-highest indicates a vibrate command, the lower 2 data bits are always 0 (the respective pins on the PT2240B have pull-down resistors). See Figure~\ref{remotepcb} for the disassembled remote, Figure~\ref{remote-main} for the schematic.
+The remote control contains a Princeton Technology PT2240B Encoder, which encodes 25-bit code words in a form suitable for RF modulation. Each code word consists of a 20-bit little endian address, followed by a 4-bit big-endian data nibble followed by a sync bit. The highest data bit indicates a shock command, the second-highest indicates a vibrate command, the lower 2 data bits are always 0 (the respective pins on the PT2240B have pull-down resistors). See Figure~\ref{remotepcb} for the disassembled remote, Figure~\ref{remote-main} for the schematic.
 
 \begin{figure}
 	\centerline{\includegraphics[scale=0.1]{remote-top.jpeg}\includegraphics[scale=0.1]{remote-bottom.jpeg}}
@@ -134,7 +134,7 @@ The remote control contains Princeton Technology PT2240B Encoder, which encodes 
 
 The shock unit electronics consist of three parts: A RF module, the main part and the high-voltage module. The RF module consists of a separate PCB interfaced via 3 pins to the main module. The high-voltage part interfaces via two PCB traces to the main module. Both the RF module and the main module contain an IC. On both ICs, the markings have been sanded off. The main module also features a vibrator and a tilt switch.
 
-The RF module is almost identical to the reference circuit in the datasheet of the HOPERF RF83C RF receiver IC. Thus, the IC is most likely a RF83C, though other RF ICs with a compatible pinout, such as the Micrel MICRF002/RF022 cannot be ruled out. When receiving data, lowest two data bits are apparently ignored.
+The RF module is almost identical to the reference circuit in the datasheet of the HOPERF RF83C RF receiver IC. Thus, the IC is most likely a RF83C, though other RF ICs with a compatible pinout, such as the Micrel MICRF002/RF022 cannot be ruled out. When receiving data, the lowest two data bits are apparently ignored.
 
 \begin{figure*}[h]
 	\centerline{\begin{tabular}{|l|l|}
